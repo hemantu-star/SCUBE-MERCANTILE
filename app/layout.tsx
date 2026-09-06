@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Newsreader, Outfit } from "next/font/google";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { company } from "@/lib/content";
+import { defaultDescription, siteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -17,12 +16,42 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${company.name} | Solar Distribution, Guwahati`,
     template: `%s | ${company.name}`,
   },
-  description:
-    "Authorised CNF, distributor and dealer of solar panels, inverters, batteries, pumps and lighting in Guwahati, Assam. ISO 9001:2015 certified.",
+  description: defaultDescription,
+  keywords: [
+    "S-Cube Mercantile",
+    "solar distributor Guwahati",
+    "solar panels Assam",
+    "Adani Solar",
+    "Waaree",
+    "Luminous",
+    "Microtek",
+    "Tata Power Solar",
+  ],
+  authors: [{ name: company.name }],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: siteUrl,
+    siteName: company.name,
+    title: `${company.name} | Solar Distribution, Guwahati`,
+    description: defaultDescription,
+    images: [{ url: "/images/hero.jpg", alt: company.tagline }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${company.name} | Solar Distribution, Guwahati`,
+    description: defaultDescription,
+    images: ["/images/hero.jpg"],
+  },
 };
 
 export default function RootLayout({
@@ -35,11 +64,7 @@ export default function RootLayout({
       lang="en"
       className={`${outfit.variable} ${newsreader.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-paper text-ink">
-        <Header />
-        <div className="flex-1">{children}</div>
-        <Footer />
-      </body>
+      <body className="min-h-full flex flex-col bg-paper text-ink">{children}</body>
     </html>
   );
 }

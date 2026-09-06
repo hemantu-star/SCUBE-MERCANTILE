@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { company, nav } from "@/lib/content";
+import { whatsappUrl } from "@/lib/whatsapp";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -13,7 +14,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-3">
           <img
             src="/images/logo.png"
-            alt=""
+            alt={`${company.name} logo`}
             className="h-10 w-10 rounded-md bg-white object-contain p-0.5"
           />
           <span className="leading-tight">
@@ -36,12 +37,14 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
+          <a
+            href={whatsappUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-full bg-sun px-4 py-2 text-navy transition hover:bg-[#efb02a]"
           >
-            Contact
-          </Link>
+            WhatsApp
+          </a>
         </nav>
 
         <button
@@ -66,13 +69,15 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
+          <a
+            href={whatsappUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setOpen(false)}
             className="font-medium text-sun"
           >
-            Contact
-          </Link>
+            WhatsApp
+          </a>
         </nav>
       )}
     </header>

@@ -1,7 +1,8 @@
-import { brands } from "@/lib/content";
+import { getCmsBrands } from "@/lib/cms/public";
 import SectionHeading from "@/components/SectionHeading";
 
-export default function BrandsStrip() {
+export default async function BrandsStrip() {
+  const brands = await getCmsBrands();
   return (
     <section className="bg-white py-20">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
