@@ -1,54 +1,78 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
+import { company, nav } from "@/lib/content";
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
-        <Link href="/" className="flex items-center gap-2 font-semibold text-lg text-blue-900">
-          <img src="/images/logo.png" alt="S-Cube Mercantile" className="h-9 w-9" />
-          S-Cube Mercantile
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-navy/95 text-white backdrop-blur-md">
+      <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between px-4 md:px-6">
+        <Link href="/" className="flex items-center gap-3">
+          <img
+            src="/images/logo.png"
+            alt=""
+            className="h-10 w-10 rounded-md bg-white object-contain p-0.5"
+          />
+          <span className="leading-tight">
+            <span className="block text-sm font-semibold tracking-wide">
+              {company.name}
+            </span>
+            <span className="hidden text-[11px] text-white/60 sm:block">
+              {company.city}
+            </span>
+          </span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
-          <Link href="/" className="hover:text-blue-700">Home</Link>
-          <Link href="/about-us" className="hover:text-blue-700">About Us</Link>
-          <Link href="/products" className="hover:text-blue-700">Products</Link>
-          <Link href="/solutions" className="hover:text-blue-700">Solutions</Link>
-          <Link href="/brands" className="hover:text-blue-700">Brands</Link>
-          <Link href="/gallery" className="hover:text-blue-700">Gallery</Link>
+        <nav className="hidden items-center gap-6 text-[13px] font-medium text-white/80 md:flex">
+          {nav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="transition hover:text-white"
+            >
+              {item.label}
+            </Link>
+          ))}
           <Link
             href="/contact"
-            className="bg-blue-700 text-white px-4 py-2 rounded-full hover:bg-blue-800"
+            className="rounded-full bg-sun px-4 py-2 text-navy transition hover:bg-[#efb02a]"
           >
             Contact
           </Link>
         </nav>
 
-        {/* Mobile menu button */}
         <button
-          className="md:hidden text-2xl"
-          onClick={() => setMenuOpen(!menuOpen)}
+          className="text-2xl md:hidden"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
           aria-label="Toggle menu"
         >
-          ☰
+          {open ? "×" : "☰"}
         </button>
       </div>
 
-      {/* Mobile nav */}
-      {menuOpen && (
-        <nav className="md:hidden flex flex-col gap-3 px-4 pb-4 text-sm font-medium text-gray-700">
-          <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link href="/about-us" onClick={() => setMenuOpen(false)}>About Us</Link>
-          <Link href="/products" onClick={() => setMenuOpen(false)}>Products</Link>
-          <Link href="/solutions" onClick={() => setMenuOpen(false)}>Solutions</Link>
-          <Link href="/brands" onClick={() => setMenuOpen(false)}>Brands</Link>
-          <Link href="/gallery" onClick={() => setMenuOpen(false)}>Gallery</Link>
-          <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+      {open && (
+        <nav className="flex flex-col gap-3 border-t border-white/10 px-4 py-4 text-sm md:hidden">
+          {nav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className="text-white/85"
+            >
+              {item.label}
+            </Link>
+          ))}
+          <Link
+            href="/contact"
+            onClick={() => setOpen(false)}
+            className="font-medium text-sun"
+          >
+            Contact
+          </Link>
         </nav>
       )}
     </header>

@@ -1,40 +1,51 @@
 import Link from "next/link";
+import { company } from "@/lib/content";
+import { HeroCanvas } from "@/components/three/ThreeCanvas";
 
 export default function Hero() {
   return (
-    <section className="relative h-[70vh] min-h-[420px] w-full flex items-center">
-      {/* Background image */}
+    <section className="relative min-h-[86vh] overflow-hidden bg-navy text-white">
       <img
         src="/images/hero.jpg"
-        alt="Rooftop solar panel installation in Guwahati, Assam"
+        alt="Solar installation across Guwahati and the Northeast"
         className="absolute inset-0 h-full w-full object-cover"
       />
-      {/* Dark overlay so text stays readable */}
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/85 to-navy/35" />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 text-white">
-        <h1 className="text-3xl md:text-5xl font-semibold max-w-2xl leading-tight">
-          Solar Panels, Inverters, Batteries & Pumps in Guwahati, Assam
-        </h1>
-        <p className="mt-4 text-base md:text-lg text-gray-200">
-          Authorised dealer · 7+ years of service · ISO 9001:2015 certified
-        </p>
-        <div className="mt-6 flex flex-wrap gap-4">
-          <Link
-            href="/contact"
-            className="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-full font-medium"
-          >
-            Get a Quote
-          </Link>
-          <a
-            href="https://wa.me/91XXXXXXXXXX"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-medium"
-          >
-            WhatsApp Us
-          </a>
+      <div className="relative mx-auto grid min-h-[86vh] max-w-6xl items-center gap-8 px-4 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-6">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sun">
+            {company.model} · {company.city}
+          </p>
+          <h1 className="font-serif mt-4 max-w-xl text-4xl leading-tight md:text-6xl">
+            {company.tagline}
+          </h1>
+          <p className="mt-5 max-w-lg text-base leading-relaxed text-white/80 md:text-lg">
+            Genuine solar panels, inverters, batteries, pumps and lighting —
+            supplied from Guwahati to dealers, installers and projects across
+            the Northeast.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/contact"
+              className="rounded-full bg-sun px-6 py-3 text-sm font-semibold text-navy transition hover:bg-[#efb02a]"
+            >
+              Partner with us
+            </Link>
+            <Link
+              href="/products"
+              className="rounded-full border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+            >
+              View products
+            </Link>
+          </div>
+          <p className="mt-6 text-sm text-white/55">
+            {company.iso} certified · {company.years} years of service
+          </p>
+        </div>
+
+        <div className="relative h-[240px] md:h-[420px]">
+          <HeroCanvas />
         </div>
       </div>
     </section>

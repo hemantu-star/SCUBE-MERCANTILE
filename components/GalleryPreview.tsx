@@ -1,52 +1,34 @@
 import Link from "next/link";
-
-const photos = [
-  {
-    src: "/images/gallery/rooftop-installation.jpg",
-    alt: "Rooftop solar panel installation in Guwahati, Assam",
-  },
-  {
-    src: "/images/gallery/elevated-rooftop.jpg",
-    alt: "Elevated rooftop solar installation on a residential building",
-  },
-  {
-    src: "/images/gallery/solar-pv-array.jpg",
-    alt: "Solar PV array and mounting structure installation",
-  },
-  {
-    src: "/images/gallery/solar-water-pump.jpg",
-    alt: "Solar-powered water pump for agricultural irrigation in Assam",
-  },
-];
+import { gallery } from "@/lib/content";
+import SectionHeading from "@/components/SectionHeading";
 
 export default function GalleryPreview() {
   return (
-    <section className="bg-gray-50 py-14">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-semibold text-center text-blue-900">
-          Our Installations
-        </h2>
-        <p className="text-center text-gray-600 mt-2 mb-10">
-          A look at solar projects across Guwahati and the Northeast
-        </p>
+    <section className="bg-white py-20">
+      <div className="mx-auto max-w-6xl px-4 md:px-6">
+        <SectionHeading
+          eyebrow="Field applications"
+          title="Selected installation environments"
+          subtitle="Photographs from the company profile, used to illustrate product and site conditions."
+        />
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {photos.map((photo) => (
+        <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4">
+          {gallery.map((photo) => (
             <img
               key={photo.src}
               src={photo.src}
               alt={photo.alt}
-              className="w-full h-32 md:h-40 object-cover rounded-xl"
+              className="h-36 w-full rounded-2xl object-cover md:h-48"
             />
           ))}
         </div>
 
-        <div className="text-center mt-8">
+        <div className="mt-8 text-center">
           <Link
             href="/gallery"
-            className="text-blue-700 font-medium hover:underline"
+            className="text-sm font-semibold text-navy underline decoration-sun decoration-2 underline-offset-4"
           >
-            View Full Gallery →
+            View the gallery
           </Link>
         </div>
       </div>
