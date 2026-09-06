@@ -1,0 +1,40 @@
+import { promises as fs } from "fs";
+import path from "path";
+import type { CmsData, MediaItem, Product } from "./types";
+
+const cmsPath = path.join(process.cwd(), "data", "cms.json");
+
+export function newId(prefix: string) {
+  return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
+}
+
+export async function readCms(): Promise<CmsData> {
+  const raw = await fs.readFile(cmsPath, "utf8");
+  return JSON.parse(raw) as CmsData;
+}
+
+export async function writeCms(data: CmsData) {
+  await fs.mkdir(path.dirname(cmsPath), { recursive: true });
+  await fs.writeFile(cmsPath, `${JSON.stringify(data, null, 2)}\n`, "utf8");
+}
+
+export async function updateCms(mutator: (data: CmsData) => void) {
+  const data = await readCms();
+  mutator(data);
+  await writeCms(data);
+  return data;
+}
+
+export function productImages(product: Product, media: MediaItem[]) {
+  return product.imageIds
+    .map((id) => media.find((item) => item.id === id))
+    .filter((item): item is MediaItem => Boolean(item));
+}
+
+export function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}

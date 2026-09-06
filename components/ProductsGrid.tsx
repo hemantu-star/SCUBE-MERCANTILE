@@ -7,7 +7,7 @@ import {
   Lightbulb,
   Plug,
 } from "lucide-react";
-import { products } from "@/lib/content";
+import { getCmsProducts } from "@/lib/cms/public";
 import SectionHeading from "@/components/SectionHeading";
 
 const icons = {
@@ -19,7 +19,8 @@ const icons = {
   plug: Plug,
 };
 
-export default function ProductsGrid() {
+export default async function ProductsGrid() {
+  const products = await getCmsProducts();
   return (
     <section className="bg-white py-20">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
@@ -31,7 +32,7 @@ export default function ProductsGrid() {
 
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => {
-            const Icon = icons[product.icon as keyof typeof icons];
+            const Icon = icons[product.icon as keyof typeof icons] ?? Sun;
             return (
               <Link
                 key={product.slug}

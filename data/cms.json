@@ -1,0 +1,226 @@
+{
+  "categories": [
+    {
+      "id": "cat-pv",
+      "name": "Solar PV",
+      "slug": "solar-pv",
+      "description": "Photovoltaic modules and panel systems."
+    },
+    {
+      "id": "cat-inverters",
+      "name": "Inverters",
+      "slug": "inverters",
+      "description": "On-grid, off-grid and hybrid conversion."
+    },
+    {
+      "id": "cat-storage",
+      "name": "Storage",
+      "slug": "storage",
+      "description": "Solar and tubular batteries."
+    },
+    {
+      "id": "cat-pumping",
+      "name": "Pumping",
+      "slug": "pumping",
+      "description": "Agricultural, borewell and community pumps."
+    },
+    {
+      "id": "cat-lighting",
+      "name": "Lighting",
+      "slug": "lighting",
+      "description": "Street and home solar lighting."
+    },
+    {
+      "id": "cat-bos",
+      "name": "BOS & Accessories",
+      "slug": "bos",
+      "description": "Mounting, cables, controllers and allied components."
+    }
+  ],
+  "media": [
+    {
+      "id": "media-hero",
+      "src": "/images/hero.jpg",
+      "alt": "Solar farm array",
+      "filename": "hero.jpg"
+    },
+    {
+      "id": "media-about-rooftop",
+      "src": "/images/about-rooftop.webp",
+      "alt": "Residential rooftop solar installation",
+      "filename": "about-rooftop.webp"
+    },
+    {
+      "id": "media-warehouse",
+      "src": "/images/warehouse.jpg",
+      "alt": "S-Cube warehouse with panels, batteries, inverters and cables",
+      "filename": "warehouse.jpg"
+    },
+    {
+      "id": "media-rooftop",
+      "src": "/images/gallery/rooftop-installation.jpg",
+      "alt": "Rooftop solar installation environment",
+      "filename": "rooftop-installation.jpg"
+    },
+    {
+      "id": "media-elevated",
+      "src": "/images/gallery/elevated-rooftop.jpg",
+      "alt": "Elevated rooftop solar installation",
+      "filename": "elevated-rooftop.jpg"
+    },
+    {
+      "id": "media-residential",
+      "src": "/images/gallery/residential-rooftop.webp",
+      "alt": "Solar PV array and mounting application",
+      "filename": "residential-rooftop.webp"
+    },
+    {
+      "id": "media-pump",
+      "src": "/images/gallery/solar-water-pump.png",
+      "alt": "Solar-powered water pump for agricultural irrigation",
+      "filename": "solar-water-pump.png"
+    },
+    {
+      "id": "media-adani",
+      "src": "/images/brands/adani.jpg",
+      "alt": "Adani Solar",
+      "filename": "adani.jpg"
+    },
+    {
+      "id": "media-waaree",
+      "src": "/images/brands/waaree.png",
+      "alt": "Waaree Energies",
+      "filename": "waaree.png"
+    },
+    {
+      "id": "media-luminous",
+      "src": "/images/brands/luminous.avif",
+      "alt": "Luminous",
+      "filename": "luminous.avif"
+    },
+    {
+      "id": "media-microtek",
+      "src": "/images/brands/microtek.jpg",
+      "alt": "Microtek",
+      "filename": "microtek.jpg"
+    },
+    {
+      "id": "media-tata",
+      "src": "/images/brands/tata.jpg",
+      "alt": "Tata Power Solar",
+      "filename": "tata.jpg"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod-panels",
+      "slug": "solar-panels",
+      "name": "Solar PV Modules",
+      "short": "Solar Panels",
+      "desc": "High-efficiency polycrystalline, monocrystalline and Mono PERC / TOPCon panels.",
+      "categoryId": "cat-pv",
+      "partners": ["Adani Solar", "Waaree Energies", "Microtek", "Tata Power Solar"],
+      "icon": "sun",
+      "imageIds": [
+        "media-rooftop",
+        "media-elevated",
+        "media-residential",
+        "media-about-rooftop",
+        "media-hero"
+      ]
+    },
+    {
+      "id": "prod-inverters",
+      "slug": "solar-inverters",
+      "name": "Solar Inverters",
+      "short": "Inverters",
+      "desc": "On-grid, off-grid and hybrid inverters for conversion and backup applications.",
+      "categoryId": "cat-inverters",
+      "partners": ["Luminous", "Microtek"],
+      "icon": "zap",
+      "imageIds": ["media-warehouse"]
+    },
+    {
+      "id": "prod-batteries",
+      "slug": "solar-batteries",
+      "name": "Solar Batteries",
+      "short": "Batteries",
+      "desc": "Tubular and solar-specific batteries for dependable energy storage.",
+      "categoryId": "cat-storage",
+      "partners": ["Luminous", "Microtek"],
+      "icon": "battery",
+      "imageIds": ["media-warehouse"]
+    },
+    {
+      "id": "prod-pumps",
+      "slug": "solar-water-pumps",
+      "name": "Solar Water Pumps",
+      "short": "Water Pumps",
+      "desc": "Submersible and surface pumps for irrigation, borewell and community water.",
+      "categoryId": "cat-pumping",
+      "partners": ["Tata Power Solar"],
+      "icon": "droplet",
+      "imageIds": ["media-pump"]
+    },
+    {
+      "id": "prod-lighting",
+      "slug": "solar-lighting",
+      "name": "Solar Lighting",
+      "short": "Lighting",
+      "desc": "Street-lighting systems and home lighting for limited or unreliable grid access.",
+      "categoryId": "cat-lighting",
+      "partners": ["Luminous", "Waaree Energies"],
+      "icon": "lightbulb",
+      "imageIds": []
+    },
+    {
+      "id": "prod-bos",
+      "slug": "bos-accessories",
+      "name": "BOS & Accessories",
+      "short": "BOS & Cables",
+      "desc": "Mounting structures, cables, MC4 connectors, charge controllers and junction boxes.",
+      "categoryId": "cat-bos",
+      "partners": [],
+      "icon": "plug",
+      "imageIds": ["media-warehouse"]
+    }
+  ],
+  "brands": [
+    {
+      "id": "brand-adani",
+      "name": "Adani Solar",
+      "products": ["Solar PV Modules"],
+      "logo": "/images/brands/adani.jpg"
+    },
+    {
+      "id": "brand-waaree",
+      "name": "Waaree Energies",
+      "products": ["Solar PV Modules", "Solar Solutions"],
+      "logo": "/images/brands/waaree.png"
+    },
+    {
+      "id": "brand-luminous",
+      "name": "Luminous",
+      "products": ["Solar Inverters", "Batteries", "Solar Solutions"],
+      "logo": "/images/brands/luminous.avif"
+    },
+    {
+      "id": "brand-microtek",
+      "name": "Microtek",
+      "products": ["Solar Inverters", "Panels", "Batteries"],
+      "logo": "/images/brands/microtek.jpg"
+    },
+    {
+      "id": "brand-tata",
+      "name": "Tata Power Solar",
+      "products": ["Solar Modules", "Rooftops", "Pumps", "Solar Solutions"],
+      "logo": "/images/brands/tata.jpg"
+    }
+  ],
+  "gallery": [
+    { "id": "gal-1", "mediaId": "media-rooftop" },
+    { "id": "gal-2", "mediaId": "media-elevated" },
+    { "id": "gal-3", "mediaId": "media-residential" },
+    { "id": "gal-4", "mediaId": "media-pump" }
+  ]
+}

@@ -1,5 +1,6 @@
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, MessageCircle } from "lucide-react";
 import { company } from "@/lib/content";
+import { whatsappUrl } from "@/lib/whatsapp";
 import SectionHeading from "@/components/SectionHeading";
 
 export default function ContactSection() {
@@ -18,6 +19,17 @@ export default function ContactSection() {
             <p className="text-sm leading-relaxed text-ink">{company.address}</p>
           </div>
           <div className="flex items-center gap-3">
+            <MessageCircle className="h-5 w-5 text-green" />
+            <a
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-ink hover:text-green"
+            >
+              WhatsApp us
+            </a>
+          </div>
+          <div className="flex items-center gap-3">
             <Mail className="h-5 w-5 text-green" />
             <a
               href={`mailto:${company.email}`}
@@ -28,10 +40,12 @@ export default function ContactSection() {
           </div>
           <p className="text-sm text-muted">GSTN: {company.gstn}</p>
           <a
-            href={`mailto:${company.email}?subject=Enquiry from website`}
-            className="inline-flex rounded-full bg-navy px-6 py-3 text-sm font-semibold text-white transition hover:bg-navy-mid"
+            href={whatsappUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex rounded-full bg-[#1f8a4c] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#18753f]"
           >
-            Email an enquiry
+            Continue on WhatsApp
           </a>
         </div>
 

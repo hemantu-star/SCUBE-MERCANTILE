@@ -8,6 +8,8 @@ export const company = {
   website: "https://www.scubemercantile.in",
   websiteLabel: "www.scubemercantile.in",
   email: "Info.scubemercantile@gmail.com",
+  // Replace digits only, country code included, no + or spaces. Example: 919876543210
+  whatsapp: "91XXXXXXXXXX",
   gstn: "18EBPPS8578K4Z8",
   iso: "ISO 9001:2015",
   years: "7+",

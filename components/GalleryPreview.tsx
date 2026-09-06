@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { gallery } from "@/lib/content";
+import { getCmsGallery } from "@/lib/cms/public";
 import SectionHeading from "@/components/SectionHeading";
 
-export default function GalleryPreview() {
+export default async function GalleryPreview() {
+  const gallery = await getCmsGallery();
   return (
     <section className="bg-white py-20">
       <div className="mx-auto max-w-6xl px-4 md:px-6">

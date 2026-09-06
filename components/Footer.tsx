@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { company, nav } from "@/lib/content";
+import { whatsappUrl } from "@/lib/whatsapp";
 
 export default function Footer() {
   return (
@@ -9,7 +10,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <img
               src="/images/logo.png"
-              alt=""
+              alt={`${company.name} logo`}
               className="h-10 w-10 rounded-md bg-white object-contain p-0.5"
             />
             <h3 className="font-semibold text-white">{company.name}</h3>
@@ -18,6 +19,16 @@ export default function Footer() {
             {company.address}
           </p>
           <p className="mt-3 text-sm">
+            <a
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white"
+            >
+              WhatsApp us
+            </a>
+          </p>
+          <p className="mt-1 text-sm">
             <a href={`mailto:${company.email}`} className="hover:text-white">
               {company.email}
             </a>

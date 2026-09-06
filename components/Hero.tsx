@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { company } from "@/lib/content";
+import { whatsappUrl } from "@/lib/whatsapp";
 import { HeroCanvas } from "@/components/three/ThreeCanvas";
 
 export default function Hero() {
@@ -26,12 +27,14 @@ export default function Hero() {
             the Northeast.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/contact"
+            <a
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full bg-sun px-6 py-3 text-sm font-semibold text-navy transition hover:bg-[#efb02a]"
             >
-              Partner with us
-            </Link>
+              WhatsApp us
+            </a>
             <Link
               href="/products"
               className="rounded-full border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10"
