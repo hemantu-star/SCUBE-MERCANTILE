@@ -1,59 +1,32 @@
-import { Award, ShieldCheck, MapPin, Truck, Tag, Headphones } from "lucide-react";
-
-const reasons = [
-  {
-    title: "7+ Years of Experience",
-    desc: "Established track record in solar distribution and dealership across the region.",
-    icon: Award,
-  },
-  {
-    title: "Authorised Distributor",
-    desc: "Genuine products from Adani Solar, Waaree Solar, Luminous and Microtek with manufacturer warranty support.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Strong Local Network",
-    desc: "Regional understanding of Guwahati and the Northeast Indian market, logistics and customer needs.",
-    icon: MapPin,
-  },
-  {
-    title: "Reliable CNF & Distribution",
-    desc: "Carrying, forwarding and distribution model focused on consistent stock availability.",
-    icon: Truck,
-  },
-  {
-    title: "Competitive Pricing",
-    desc: "Distributor-level pricing support for channel partners and customers.",
-    icon: Tag,
-  },
-  {
-    title: "After-Sales Support",
-    desc: "Coordination for warranty claims, technical queries and product servicing.",
-    icon: Headphones,
-  },
-];
+import { reasons } from "@/lib/content";
+import SectionHeading from "@/components/SectionHeading";
 
 export default function WhyChooseUs() {
   return (
-    <section className="max-w-6xl mx-auto px-4 py-14">
-      <h2 className="text-2xl md:text-3xl font-semibold text-center text-blue-900">
-        Why Choose S-Cube Mercantile
-      </h2>
-      <p className="text-center text-gray-600 mt-2 mb-10">
-        A distribution partner built on genuine products and dependable service
-      </p>
+    <section className="bg-white py-20">
+      <div className="mx-auto max-w-6xl px-4 md:px-6">
+        <SectionHeading
+          eyebrow="Why S-Cube"
+          title="A distribution partner built on genuine supply"
+          subtitle="The six reasons stated in the company profile — experience, authorised brands, local network, CNF, pricing and after-sales."
+        />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {reasons.map(({ title, desc, icon: Icon }) => (
-          <div
-            key={title}
-            className="bg-gray-50 rounded-xl p-6 border border-gray-100"
-          >
-            <Icon className="w-7 h-7 text-blue-700 mb-3" />
-            <h3 className="font-medium text-gray-800">{title}</h3>
-            <p className="text-sm text-gray-600 mt-1">{desc}</p>
-          </div>
-        ))}
+        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {reasons.map((item, index) => (
+            <div
+              key={item.title}
+              className="rounded-2xl border border-line bg-paper p-6"
+            >
+              <span className="font-serif text-xl text-sun">
+                0{index + 1}
+              </span>
+              <h3 className="mt-3 font-semibold text-navy">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted">
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
