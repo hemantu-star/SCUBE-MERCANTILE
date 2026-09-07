@@ -4,6 +4,8 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { promises as fs } from "fs";
+import cloudinary from "@/lib/cloudinary";
+
 import path from "path";
 import {
   COOKIE,
@@ -130,24 +132,59 @@ export async function uploadMediaAction(formData: FormData) {
     redirect("/admin/media?error=type");
   }
 
-  const ext = path.extname(file.name).toLowerCase() || ".jpg";
-  const safe = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}${ext}`;
-  const dir = path.join(process.cwd(), "public", "uploads");
-  await fs.mkdir(dir, { recursive: true });
-  await fs.writeFile(path.join(dir, safe), Buffer.from(await file.arrayBuffer()));
+  const bytes = await file.arrayBuffer();
+  const buffer = Buffer.from(bytes);
+
+  let src = "";
+  let filename = file.name;
+
+  if (
+    process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME &&
+    process.env.CLOUDINARY_API_KEY &&
+    process.env.CLOUDINARY_API_SECRET
+  ) {
+    // Upload to Cloudinary CDN
+    const uploadResult = await new Promise<{ secure_url: string; public_id: string }>(
+      (resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+          {
+            folder: "scube_uploads",
+            resource_type: "image",
+          },
+          (error, result) => {
+            if (error || !result) reject(error);
+            else resolve(result);
+          }
+        );
+        stream.end(buffer);
+      }
+    );
+    src = uploadResult.secure_url;
+    filename = uploadResult.public_id;
+  } else {
+    // Local file fallback
+    const ext = path.extname(file.name).toLowerCase() || ".jpg";
+    const safe = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}${ext}`;
+    const dir = path.join(process.cwd(), "public", "uploads");
+    await fs.mkdir(dir, { recursive: true });
+    await fs.writeFile(path.join(dir, safe), buffer);
+    src = `/uploads/${safe}`;
+    filename = safe;
+  }
 
   const alt = String(formData.get("alt") || file.name).trim();
   await updateCms((data) => {
     data.media.unshift({
       id: newId("media"),
-      src: `/uploads/${safe}`,
+      src,
       alt,
-      filename: safe,
+      filename,
     });
   });
   refresh();
   redirect("/admin/media?saved=1");
 }
+
 
 export async function deleteMediaAction(formData: FormData) {
   await requireAdmin();

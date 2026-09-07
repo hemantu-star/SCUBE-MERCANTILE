@@ -1,5 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
+import clientPromise from "@/lib/mongodb";
 import type { CmsData, MediaItem, Product } from "./types";
 
 const cmsPath = path.join(process.cwd(), "data", "cms.json");
@@ -8,12 +9,53 @@ export function newId(prefix: string) {
   return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
 }
 
-export async function readCms(): Promise<CmsData> {
+async function readLocalFallback(): Promise<CmsData> {
   const raw = await fs.readFile(cmsPath, "utf8");
   return JSON.parse(raw) as CmsData;
 }
 
+export async function readCms(): Promise<CmsData> {
+  if (clientPromise) {
+    try {
+      const client = await clientPromise;
+      const db = client.db("scube_cms");
+      const doc = await db.collection("cms_store").findOne({ _id: "scube_cms_doc" as any });
+
+      if (doc && doc.data) {
+        return doc.data as CmsData;
+      }
+
+      // First-time automatic migration: copy local data/cms.json into MongoDB
+      const localData = await readLocalFallback();
+      await db.collection("cms_store").updateOne(
+        { _id: "scube_cms_doc" as any },
+        { $set: { data: localData, updatedAt: new Date() } },
+        { upsert: true }
+      );
+      return localData;
+    } catch (err) {
+      console.error("MongoDB read error, using local fallback:", err);
+    }
+  }
+  return readLocalFallback();
+}
+
 export async function writeCms(data: CmsData) {
+  if (clientPromise) {
+    try {
+      const client = await clientPromise;
+      const db = client.db("scube_cms");
+      await db.collection("cms_store").updateOne(
+        { _id: "scube_cms_doc" as any },
+        { $set: { data, updatedAt: new Date() } },
+        { upsert: true }
+      );
+      return;
+    } catch (err) {
+      console.error("MongoDB write error, saving locally:", err);
+    }
+  }
+
   await fs.mkdir(path.dirname(cmsPath), { recursive: true });
   await fs.writeFile(cmsPath, `${JSON.stringify(data, null, 2)}\n`, "utf8");
 }

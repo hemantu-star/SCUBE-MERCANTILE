@@ -113,32 +113,20 @@
   ],
   "products": [
     {
-      "id": "prod-panels",
-      "slug": "solar-panels",
-      "name": "Solar PV Modules",
-      "short": "Solar Panels",
-      "desc": "High-efficiency polycrystalline, monocrystalline and Mono PERC / TOPCon panels.",
-      "categoryId": "cat-pv",
-      "partners": ["Adani Solar", "Waaree Energies", "Microtek", "Tata Power Solar"],
-      "icon": "sun",
-      "imageIds": [
-        "media-rooftop",
-        "media-elevated",
-        "media-residential",
-        "media-about-rooftop",
-        "media-hero"
-      ]
-    },
-    {
       "id": "prod-inverters",
       "slug": "solar-inverters",
       "name": "Solar Inverters",
       "short": "Inverters",
       "desc": "On-grid, off-grid and hybrid inverters for conversion and backup applications.",
       "categoryId": "cat-inverters",
-      "partners": ["Luminous", "Microtek"],
+      "partners": [
+        "Luminous",
+        "Microtek"
+      ],
       "icon": "zap",
-      "imageIds": ["media-warehouse"]
+      "imageIds": [
+        "media-warehouse"
+      ]
     },
     {
       "id": "prod-batteries",
@@ -147,9 +135,14 @@
       "short": "Batteries",
       "desc": "Tubular and solar-specific batteries for dependable energy storage.",
       "categoryId": "cat-storage",
-      "partners": ["Luminous", "Microtek"],
+      "partners": [
+        "Luminous",
+        "Microtek"
+      ],
       "icon": "battery",
-      "imageIds": ["media-warehouse"]
+      "imageIds": [
+        "media-warehouse"
+      ]
     },
     {
       "id": "prod-pumps",
@@ -158,9 +151,13 @@
       "short": "Water Pumps",
       "desc": "Submersible and surface pumps for irrigation, borewell and community water.",
       "categoryId": "cat-pumping",
-      "partners": ["Tata Power Solar"],
+      "partners": [
+        "Tata Power Solar"
+      ],
       "icon": "droplet",
-      "imageIds": ["media-pump"]
+      "imageIds": [
+        "media-pump"
+      ]
     },
     {
       "id": "prod-lighting",
@@ -169,7 +166,10 @@
       "short": "Lighting",
       "desc": "Street-lighting systems and home lighting for limited or unreliable grid access.",
       "categoryId": "cat-lighting",
-      "partners": ["Luminous", "Waaree Energies"],
+      "partners": [
+        "Luminous",
+        "Waaree Energies"
+      ],
       "icon": "lightbulb",
       "imageIds": []
     },
@@ -182,45 +182,77 @@
       "categoryId": "cat-bos",
       "partners": [],
       "icon": "plug",
-      "imageIds": ["media-warehouse"]
+      "imageIds": [
+        "media-warehouse"
+      ]
     }
   ],
   "brands": [
     {
       "id": "brand-adani",
       "name": "Adani Solar",
-      "products": ["Solar PV Modules"],
+      "products": [
+        "Solar PV Modules"
+      ],
       "logo": "/images/brands/adani.jpg"
     },
     {
       "id": "brand-waaree",
       "name": "Waaree Energies",
-      "products": ["Solar PV Modules", "Solar Solutions"],
+      "products": [
+        "Solar PV Modules",
+        "Solar Solutions"
+      ],
       "logo": "/images/brands/waaree.png"
     },
     {
       "id": "brand-luminous",
       "name": "Luminous",
-      "products": ["Solar Inverters", "Batteries", "Solar Solutions"],
+      "products": [
+        "Solar Inverters",
+        "Batteries",
+        "Solar Solutions"
+      ],
       "logo": "/images/brands/luminous.avif"
     },
     {
       "id": "brand-microtek",
       "name": "Microtek",
-      "products": ["Solar Inverters", "Panels", "Batteries"],
+      "products": [
+        "Solar Inverters",
+        "Panels",
+        "Batteries"
+      ],
       "logo": "/images/brands/microtek.jpg"
     },
     {
       "id": "brand-tata",
       "name": "Tata Power Solar",
-      "products": ["Solar Modules", "Rooftops", "Pumps", "Solar Solutions"],
+      "products": [
+        "Solar Modules",
+        "Rooftops",
+        "Pumps",
+        "Solar Solutions"
+      ],
       "logo": "/images/brands/tata.jpg"
     }
   ],
   "gallery": [
-    { "id": "gal-1", "mediaId": "media-rooftop" },
-    { "id": "gal-2", "mediaId": "media-elevated" },
-    { "id": "gal-3", "mediaId": "media-residential" },
-    { "id": "gal-4", "mediaId": "media-pump" }
+    {
+      "id": "gal-1",
+      "mediaId": "media-rooftop"
+    },
+    {
+      "id": "gal-2",
+      "mediaId": "media-elevated"
+    },
+    {
+      "id": "gal-3",
+      "mediaId": "media-residential"
+    },
+    {
+      "id": "gal-4",
+      "mediaId": "media-pump"
+    }
   ]
 }

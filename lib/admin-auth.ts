@@ -3,12 +3,17 @@ import { cookies } from "next/headers";
 const COOKIE = "scube_admin";
 
 export function adminPassword() {
-  return process.env.ADMIN_PASSWORD || "scube-admin";
+  const pass = process.env.ADMIN_PASSWORD;
+  if (!pass) {
+    console.warn("ADMIN_PASSWORD environment variable is not set!");
+    return "";
+  }
+  return pass;
 }
 
 export async function sessionToken() {
-  const secret = process.env.ADMIN_SECRET || "dev-scube-admin-secret";
-  const bytes = new TextEncoder().encode(`scube-admin|${secret}`);
+  const secret = process.env.ADMIN_SECRET || adminPassword();
+  const bytes = new TextEncoder().encode(`scube-session|${secret}`);
   const hash = await crypto.subtle.digest("SHA-256", bytes);
   return Array.from(new Uint8Array(hash), (b) => b.toString(16).padStart(2, "0")).join("");
 }
