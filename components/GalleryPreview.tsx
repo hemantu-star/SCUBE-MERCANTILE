@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getCmsGallery } from "@/lib/cms/public";
 import SectionHeading from "@/components/SectionHeading";
-
+import Image from "next/image";
 export default async function GalleryPreview() {
   const gallery = await getCmsGallery();
   return (
@@ -15,12 +15,16 @@ export default async function GalleryPreview() {
 
         <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4">
           {gallery.map((photo) => (
-            <img
-              key={photo.src}
-              src={photo.src}
-              alt={photo.alt}
-              className="h-36 w-full rounded-2xl object-cover md:h-48"
-            />
+            <div key={photo.src} className="relative h-36 w-full md:h-48 overflow-hidden rounded-2xl">
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, 25vw"
+              />
+            </div>
+
           ))}
         </div>
 

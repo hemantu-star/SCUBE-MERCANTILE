@@ -1,16 +1,20 @@
 import Link from "next/link";
 import { company } from "@/lib/content";
 import { whatsappUrl } from "@/lib/whatsapp";
-import { HeroCanvas } from "@/components/three/ThreeCanvas";
-
+//import { HeroCanvas } from "@/components/three/ThreeCanvas";
+import Image from "next/image";
 export default function Hero() {
   return (
     <section className="relative min-h-[86vh] overflow-hidden bg-navy text-white">
-      <img
+      <Image
         src="/images/hero.jpg"
         alt="Solar installation across Guwahati and the Northeast"
-        className="absolute inset-0 h-full w-full object-cover"
+        fill
+        priority
+        className="object-cover"
+        sizes="100vw"
       />
+
       <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/85 to-navy/35" />
 
       <div className="relative mx-auto grid min-h-[86vh] max-w-6xl items-center gap-8 px-4 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-6">
@@ -47,9 +51,9 @@ export default function Hero() {
           </p>
         </div>
 
-        <div className="relative h-[240px] md:h-[420px]">
+        {/* <div className="relative h-[240px] md:h-[420px]">
           <HeroCanvas />
-        </div>
+        </div> */}
       </div>
     </section>
   );

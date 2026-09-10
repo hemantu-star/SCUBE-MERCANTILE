@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { company, values } from "@/lib/content";
-import { OrbitCanvas } from "@/components/three/ThreeCanvas";
-
+//import { OrbitCanvas } from "@/components/three/ThreeCanvas";
+import Image from "next/image";
 export default function AboutTeaser() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-20 md:px-6">
@@ -37,16 +37,20 @@ export default function AboutTeaser() {
           </Link>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl bg-navy">
-          <img
+        <div className="relative h-80 w-full md:h-[420px] overflow-hidden rounded-2xl bg-navy">
+
+          <Image
             src="/images/about-rooftop.webp"
             alt="Residential rooftop solar installation"
-            className="h-80 w-full object-cover opacity-70 md:h-[420px]"
+            fill
+            className="object-cover opacity-70"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
+
           <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent" />
-          <div className="absolute bottom-0 right-0 h-48 w-48 md:h-56 md:w-56">
+          {/* <div className="absolute bottom-0 right-0 h-48 w-48 md:h-56 md:w-56">
             <OrbitCanvas />
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

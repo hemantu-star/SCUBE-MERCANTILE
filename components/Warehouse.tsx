@@ -1,14 +1,19 @@
 import { company } from "@/lib/content";
-
+import Image from "next/image";
 export default function Warehouse() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-20 md:px-6">
       <div className="overflow-hidden rounded-3xl bg-navy text-white md:grid md:grid-cols-2">
-        <img
-          src="/images/warehouse.jpg"
-          alt="S-Cube Mercantile solar products warehouse in Guwahati, Assam"
-          className="h-72 w-full object-cover md:h-full"
-        />
+        <div className="relative h-72 w-full md:h-full min-h-[280px]">
+          <Image
+            src="/images/warehouse.jpg"
+            alt="S-Cube Mercantile solar products warehouse in Guwahati, Assam"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+
         <div className="p-8 md:p-12">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sun">
             Warehouse & distribution

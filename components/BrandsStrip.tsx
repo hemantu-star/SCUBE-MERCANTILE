@@ -1,6 +1,6 @@
 import { getCmsBrands } from "@/lib/cms/public";
 import SectionHeading from "@/components/SectionHeading";
-
+import Image from "next/image";
 export default async function BrandsStrip() {
   const brands = await getCmsBrands();
   return (
@@ -17,12 +17,16 @@ export default async function BrandsStrip() {
             <div
               key={brand.name}
               className="flex flex-col items-center rounded-2xl border border-line bg-paper px-4 py-6 text-center"
-            >
-              <img
-                src={brand.logo}
-                alt={`${brand.name} logo`}
-                className="h-14 w-auto object-contain"
-              />
+            ><div className="relative h-14 w-32">
+                <Image
+                  src={brand.logo}
+                  alt={`${brand.name} logo`}
+                  fill
+                  className="object-contain"
+                  sizes="128px"
+                />
+              </div>
+
               <p className="mt-4 text-sm font-semibold text-navy">{brand.name}</p>
               <p className="mt-1 text-xs text-muted">{brand.products[0]}</p>
             </div>

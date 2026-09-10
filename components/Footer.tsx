@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { company, nav } from "@/lib/content";
 import { whatsappUrl } from "@/lib/whatsapp";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -8,9 +9,11 @@ export default function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-3 md:px-6">
         <div>
           <div className="flex items-center gap-3">
-            <img
+            <Image
               src="/images/logo.png"
               alt={`${company.name} logo`}
+              width={40}
+              height={40}
               className="h-10 w-10 rounded-md bg-white object-contain p-0.5"
             />
             <h3 className="font-semibold text-white">{company.name}</h3>
