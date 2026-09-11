@@ -43,6 +43,7 @@ export default function AboutTeaser() {
             src="/images/about-rooftop.webp"
             alt="Residential rooftop solar installation"
             fill
+            loading="lazy"
             className="object-cover opacity-70"
             sizes="(max-width: 768px) 100vw, 50vw"
           />

@@ -18,7 +18,7 @@ import { newId, readCms, slugify, updateCms } from "@/lib/cms/store";
 function refresh() {
   revalidatePath("/", "layout");
   revalidatePath("/admin");
-  revalidatePath("/products");
+  revalidatePath("/products", "layout");
   revalidatePath("/gallery");
   revalidatePath("/brands");
 }
@@ -128,8 +128,13 @@ export async function uploadMediaAction(formData: FormData) {
   }
 
   const allowed = ["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif"];
-  if (!allowed.includes(file.type) || file.size > 8 * 1024 * 1024) {
+  if (!allowed.includes(file.type)) {
     redirect("/admin/media?error=type");
+  }
+
+  const MAX_FILE_SIZE = 1 * 1024 * 1024; // 1 MB limit for fast loading
+  if (file.size > MAX_FILE_SIZE) {
+    redirect("/admin/media?error=size");
   }
 
   const bytes = await file.arrayBuffer();
@@ -199,8 +204,22 @@ export async function deleteMediaAction(formData: FormData) {
     }));
     data.gallery = data.gallery.filter((entry) => entry.mediaId !== id);
   });
-  if (item?.src.startsWith("/uploads/")) {
-    await fs.unlink(path.join(process.cwd(), "public", item.src)).catch(() => undefined);
+
+  if (item) {
+    if (item.src.startsWith("/uploads/")) {
+      await fs.unlink(path.join(process.cwd(), "public", item.src)).catch(() => undefined);
+    } else if (
+      item.filename &&
+      process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME &&
+      process.env.CLOUDINARY_API_KEY &&
+      process.env.CLOUDINARY_API_SECRET
+    ) {
+      try {
+        await cloudinary.uploader.destroy(item.filename);
+      } catch (err) {
+        console.error("Cloudinary delete error:", err);
+      }
+    }
   }
   refresh();
   redirect("/admin/media?deleted=1");

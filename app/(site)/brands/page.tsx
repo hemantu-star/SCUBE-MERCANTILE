@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import { getCmsBrands } from "@/lib/cms/public";
 import { pageMeta } from "@/lib/seo";
+import Image from "next/image";
 
-export const dynamic = "force-dynamic";
+//export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export const metadata: Metadata = pageMeta(
   "Brands",
@@ -28,11 +30,16 @@ export default async function BrandsPage() {
               key={brand.id}
               className="flex items-center gap-6 rounded-2xl bg-white p-6"
             >
-              <img
-                src={brand.logo}
-                alt={`${brand.name} logo`}
-                className="h-16 w-24 object-contain"
-              />
+              <div className="relative h-16 w-24 shrink-0">
+                <Image
+                  src={brand.logo}
+                  alt={`${brand.name} logo`}
+                  fill
+                  loading="lazy"
+                  className="object-contain"
+                  sizes="96px"
+                />
+              </div>
               <div>
                 <h2 className="text-lg font-semibold text-navy">{brand.name}</h2>
                 <p className="mt-1 text-sm text-muted">

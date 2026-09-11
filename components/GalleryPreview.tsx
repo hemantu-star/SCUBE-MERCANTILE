@@ -20,6 +20,7 @@ export default async function GalleryPreview() {
                 src={photo.src}
                 alt={photo.alt}
                 fill
+                loading="lazy"
                 className="object-cover"
                 sizes="(max-width: 768px) 50vw, 25vw"
               />

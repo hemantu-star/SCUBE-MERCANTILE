@@ -5,9 +5,12 @@ import Link from "next/link";
 import { company, nav } from "@/lib/content";
 import { whatsappUrl } from "@/lib/whatsapp";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-navy/95 text-white backdrop-blur-md">
@@ -35,8 +38,12 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="transition hover:text-white"
+              className={`transition hover:text-white ${pathname === item.href || pathname.startsWith(item.href + "/")
+                ? "text-white border-b-2 border-sun pb-0.5"
+                : "text-white/80"
+                }`}
             >
+
               {item.label}
             </Link>
           ))}
@@ -67,8 +74,12 @@ export default function Header() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="text-white/85"
+              className={`${pathname === item.href || pathname.startsWith(item.href + "/")
+                  ? "text-white font-semibold"
+                  : "text-white/85"
+                }`}
             >
+
               {item.label}
             </Link>
           ))}

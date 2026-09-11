@@ -12,7 +12,8 @@ import GalleryPreview from "@/components/GalleryPreview";
 import ContactSection from "@/components/ContactSection";
 import { defaultDescription, pageMeta } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
+//export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export const metadata = {
   ...pageMeta("Solar Distribution, Guwahati", defaultDescription, "/"),

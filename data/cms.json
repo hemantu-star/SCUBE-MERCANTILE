@@ -39,10 +39,10 @@
   ],
   "media": [
     {
-      "id": "media-hero",
-      "src": "/images/hero.jpg",
-      "alt": "Solar farm array",
-      "filename": "hero.jpg"
+      "id": "media-mtwq5zoo-bhtwl",
+      "src": "https://res.cloudinary.com/tz3o3rmh/image/upload/v1789117165/scube_uploads/jywpwrwzic32oqixrppt.avif",
+      "alt": "demo_image.avif",
+      "filename": "scube_uploads/jywpwrwzic32oqixrppt"
     },
     {
       "id": "media-about-rooftop",
@@ -184,6 +184,21 @@
       "icon": "plug",
       "imageIds": [
         "media-warehouse"
+      ]
+    },
+    {
+      "id": "prod-mtwqa5u1-8920z",
+      "slug": "abcd",
+      "name": "SOLAR_DEMO",
+      "short": "DEMO FOR CHECKING IF WORKING OR NOT",
+      "desc": "FOR CHECKING",
+      "categoryId": "cat-pv",
+      "partners": [
+        "ADADS"
+      ],
+      "icon": "sun",
+      "imageIds": [
+        "media-mtwq5zoo-bhtwl"
       ]
     }
   ],

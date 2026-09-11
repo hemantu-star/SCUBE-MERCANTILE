@@ -3,8 +3,21 @@ import { MongoClient } from "mongodb";
 const uri = process.env.MONGODB_URI;
 const options = {};
 
-let client: MongoClient | null = null;
 let clientPromise: Promise<MongoClient> | null = null;
+
+function initClient(): Promise<MongoClient> {
+    const clientInstance = new MongoClient(uri!, options);
+    return clientInstance
+        .connect()
+        .then((c) => {
+            console.log("✅ [MongoDB] Connected successfully to MongoDB Atlas");
+            return c;
+        })
+        .catch((err) => {
+            console.error("❌ [MongoDB] Initial connection failed:", err.message);
+            throw err;
+        });
+}
 
 if (uri) {
     if (process.env.NODE_ENV === "development") {
@@ -13,13 +26,11 @@ if (uri) {
         };
 
         if (!globalWithMongo._mongoClientPromise) {
-            client = new MongoClient(uri, options);
-            globalWithMongo._mongoClientPromise = client.connect();
+            globalWithMongo._mongoClientPromise = initClient();
         }
         clientPromise = globalWithMongo._mongoClientPromise;
     } else {
-        client = new MongoClient(uri, options);
-        clientPromise = client.connect();
+        clientPromise = initClient();
     }
 }
 

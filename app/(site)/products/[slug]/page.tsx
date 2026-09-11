@@ -5,8 +5,11 @@ import PageHero from "@/components/PageHero";
 import { getCmsProduct, getCmsProducts } from "@/lib/cms/public";
 import { pageMeta } from "@/lib/seo";
 import { whatsappUrl } from "@/lib/whatsapp";
+import Image from "next/image";
 
-export const dynamic = "force-dynamic";
+//export const dynamic = "force-dynamic";
+//export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -49,12 +52,16 @@ export default async function ProductDetailPage({
             {images.length > 0 ? (
               <div className="grid gap-3 sm:grid-cols-2">
                 {images.map((image) => (
-                  <img
-                    key={image.id}
-                    src={image.src}
-                    alt={image.alt}
-                    className="h-56 w-full rounded-2xl object-cover"
-                  />
+                  <div key={image.id} className="relative h-56 w-full overflow-hidden rounded-2xl">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      loading="lazy"
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                    />
+                  </div>
                 ))}
               </div>
             ) : (

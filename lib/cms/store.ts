@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { promises as fs } from "fs";
 import path from "path";
 import clientPromise from "@/lib/mongodb";
@@ -14,7 +15,9 @@ async function readLocalFallback(): Promise<CmsData> {
   return JSON.parse(raw) as CmsData;
 }
 
-export async function readCms(): Promise<CmsData> {
+// Inner fetch — runs the actual MongoDB / file-system query.
+// Kept separate so writeCms / updateCms can bypass the cache.
+async function fetchCms(): Promise<CmsData> {
   if (clientPromise) {
     try {
       const client = await clientPromise;
@@ -40,6 +43,10 @@ export async function readCms(): Promise<CmsData> {
   return readLocalFallback();
 }
 
+// Memoised per-request: no matter how many components call readCms()
+// in one render, MongoDB is only queried once.
+export const readCms = cache(fetchCms);
+
 export async function writeCms(data: CmsData) {
   if (clientPromise) {
     try {
@@ -61,7 +68,8 @@ export async function writeCms(data: CmsData) {
 }
 
 export async function updateCms(mutator: (data: CmsData) => void) {
-  const data = await readCms();
+  // Always fetch fresh data for mutations — bypass the per-request cache.
+  const data = await fetchCms();
   mutator(data);
   await writeCms(data);
   return data;
